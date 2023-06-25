@@ -5,7 +5,7 @@ const todoSlice = createSlice({
 	initialState: ["POO task", "Work on Nebula", "Study Zustand"],
 	reducers: {
 		add: (state, action) => {
-			state.push(action.payload.newTodo);
+			state.push(action.payload);
 		},
 	},
 });
