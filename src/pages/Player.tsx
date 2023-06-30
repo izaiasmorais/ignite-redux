@@ -1,16 +1,14 @@
 import { MessageCircle } from "lucide-react";
+import ReactPlayer from "react-player";
+import { ClassModule } from "./ClassModule";
+import { Header } from "../components/Header";
 
 export function Player() {
 	return (
 		<div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center">
 			<div className="flex w-[1100px] flex-col gap-6">
 				<div className="flex items-center justify-between">
-					<div className="flex flex-col gap-1">
-						<h1 className="text-2xl font-bold">Fundamentos do Redux</h1>
-						<span className="text-sm text-zinc-400">
-							Desvendando o Redux na prática
-						</span>
-					</div>
+					<Header />
 
 					<button
 						className="flex items-center gap-2 rounded bg-violet-500 px-3 py-2 text-sm font-medium
@@ -22,11 +20,27 @@ export function Player() {
 
 				<main
 					className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900
-				shadow"
+				shadow pr-80"
 				>
-					<div className="flex-1">Video</div>
-					<aside className="w-80 border-l border-zinc-800 bg-zinc-900 h-[600px]">
-						Aside
+					<div className="flex-1">
+						<div className="bg-zinc-950 w-full aspect-video">
+							<ReactPlayer
+								width="100%"
+								height="100%"
+								controls
+								url="https://youtu.be/oPOKpSFqy-I"
+							/>
+						</div>
+					</div>
+
+					<aside
+						className="w-80 absolute top-0 bottom-0 right-0 overflow-y-scroll border-l
+					border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950
+					scrollbar-thumb-violet-500 divide-y-2 divide-zinc"
+					>
+						<ClassModule />
+						<ClassModule />
+						<ClassModule />
 					</aside>
 				</main>
 			</div>
