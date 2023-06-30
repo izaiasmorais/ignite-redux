@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
-import ReactPlayer from "react-player";
-import { ClassModule } from "./ClassModule";
+import { Module } from "../components/Module";
 import { Header } from "../components/Header";
+import { Video } from "../components/Video";
 
 export function Player() {
 	return (
@@ -23,24 +23,29 @@ export function Player() {
 				shadow pr-80"
 				>
 					<div className="flex-1">
-						<div className="bg-zinc-950 w-full aspect-video">
-							<ReactPlayer
-								width="100%"
-								height="100%"
-								controls
-								url="https://youtu.be/oPOKpSFqy-I"
-							/>
-						</div>
+						<Video />
 					</div>
 
 					<aside
 						className="w-80 absolute top-0 bottom-0 right-0 overflow-y-scroll border-l
 					border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950
-					scrollbar-thumb-violet-500 divide-y-2 divide-zinc"
+					scrollbar-thumb-violet-500 divide-y-2 divide-zinc-900"
 					>
-						<ClassModule />
-						<ClassModule />
-						<ClassModule />
+						<Module
+							moduleIndex={0}
+							title="Desvendando o Redux"
+							lessonsAmount={3}
+						/>
+						<Module
+							moduleIndex={1}
+							title="Desvendando o Redux"
+							lessonsAmount={3}
+						/>
+						<Module
+							moduleIndex={3}
+							title="Desvendando o Redux"
+							lessonsAmount={3}
+						/>
 					</aside>
 				</main>
 			</div>
