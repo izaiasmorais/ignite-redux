@@ -1,21 +1,11 @@
 import ReactPlayer from "react-player";
-import { useAppSelector } from "../store";
 import { useDispatch } from "react-redux";
-import { next } from "../store/slicers/player";
+import { next, userCurrentLesson } from "../store/slicers/player";
 
 export function Video() {
 	const dispatch = useDispatch();
 
-	const lesson = useAppSelector((state) => {
-		const { currentLessonIndex, currentModuleIndex } = state.player;
-
-		const currentLesson =
-			state.player.course.modules[currentModuleIndex].lessons[
-				currentLessonIndex
-			];
-
-		return currentLesson;
-	});
+	const { currentLesson } = userCurrentLesson();
 
 	function handlePlayNext() {
 		dispatch(next());
@@ -29,7 +19,7 @@ export function Video() {
 				onEnded={handlePlayNext}
 				// playing
 				controls
-				url={`https://www.youtube.com/watch?v=${lesson.id}`}
+				url={`https://www.youtube.com/watch?v=${currentLesson.id}`}
 			/>
 		</div>
 	);
