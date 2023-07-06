@@ -1,9 +1,9 @@
 import ReactPlayer from "react-player";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "react-redux";
 import { next, userCurrentLesson } from "../store/slicers/player";
 
 export function Video() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const { currentLesson } = userCurrentLesson();
 
