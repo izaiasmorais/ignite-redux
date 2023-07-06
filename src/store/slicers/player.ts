@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useAppSelector } from "..";
+import { useAppDispatch, useAppSelector } from "..";
 import { api } from "../../lib/axios";
+const dispatch = useAppDispatch();
+
 
 export const loadCourse = createAsyncThunk("start", async () => {
 	api.get("/courses/1").then((response) => {
