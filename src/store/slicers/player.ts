@@ -1,5 +1,7 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useAppSelector } from "..";
+
+const fetechData = createAsyncThunk("getData", () => {});
 
 export const playerSlice = createSlice({
 	name: "player",
