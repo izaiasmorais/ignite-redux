@@ -2,10 +2,10 @@ import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useAppSelector } from "..";
 import { api } from "../../lib/axios";
 
-export const loadCourse = createAsyncThunk("start", async () => {
-	api.get("/courses/1").then((response) => {
-		dispatch(start(response.data));
-	});
+export const loadCourse = createAsyncThunk("player/load", async () => {
+	const response = await api.get("/courses");
+
+	return response.data;
 });
 
 interface Course {
@@ -25,12 +25,14 @@ interface PlayerState {
 	course: Course | null;
 	currentModuleIndex: number;
 	currentLessonIndex: number;
+	isLoading: boolean;
 }
 
 const initialState: PlayerState = {
 	course: null,
 	currentModuleIndex: 0,
 	currentLessonIndex: 0,
+	isLoading: true,
 };
 
 export const playerSlice = createSlice({
@@ -44,13 +46,15 @@ export const playerSlice = createSlice({
 		next: (state) => {
 			const nextLessonIndex = state.currentLessonIndex + 1;
 			const nextLesson =
-				state.course.modules[state.currentModuleIndex].lessons[nextLessonIndex];
+				state.course?.modules[state.currentModuleIndex].lessons[
+					nextLessonIndex
+				];
 
 			if (nextLesson) {
 				state.currentLessonIndex = nextLessonIndex;
 			} else {
 				const nextModuleIndex = state.currentModuleIndex + 1;
-				const nextModule = state.course.modules[nextModuleIndex];
+				const nextModule = state.course?.modules[nextModuleIndex];
 
 				if (nextModule) {
 					state.currentModuleIndex = nextModuleIndex;
@@ -58,6 +62,16 @@ export const playerSlice = createSlice({
 				}
 			}
 		},
+	},
+	extraReducers(builder) {
+		builder.addCase(loadCourse.pending, (state) => {
+			state.isLoading = true;
+		});
+
+		builder.addCase(loadCourse.fulfilled, (state, action) => {
+			state.course = action.payload;
+			state.isLoading = false;
+		});
 	},
 });
 
