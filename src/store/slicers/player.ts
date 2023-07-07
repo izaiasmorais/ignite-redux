@@ -1,8 +1,6 @@
-import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useAppDispatch, useAppSelector } from "..";
 import { api } from "../../lib/axios";
-const dispatch = useAppDispatch();
-
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { useAppSelector } from "..";
 
 export const loadCourse = createAsyncThunk("player/load", async () => {
 	const response = await api.get("/courses");
@@ -85,7 +83,7 @@ export const userCurrentLesson = () => {
 	return useAppSelector((state) => {
 		const { currentLessonIndex, currentModuleIndex } = state.player;
 
-		const currentModule = state?.player?.course?.modules[currentModuleIndex];
+		const currentModule = state.player.course?.modules[currentModuleIndex];
 
 		const currentLesson = currentModule?.lessons[currentLessonIndex];
 

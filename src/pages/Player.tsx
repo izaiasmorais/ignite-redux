@@ -42,16 +42,17 @@ export function Player() {
 					border-zinc-800 bg-zinc-900 scrollbar-thin scrollbar-track-zinc-950
 					scrollbar-thumb-violet-500 divide-y-2 divide-zinc-900"
 					>
-						{modules?.map((module, index) => {
-							return (
-								<Module
-									key={module.id}
-									moduleIndex={index}
-									title={module.title}
-									lessonsAmount={module.lessons.length}
-								/>
-							);
-						})}
+						{modules &&
+							modules.map((module, index) => {
+								return (
+									<Module
+										key={module.id}
+										moduleIndex={index}
+										title={module.title}
+										lessonsAmount={module.lessons.length}
+									/>
+								);
+							})}
 					</aside>
 				</main>
 			</div>

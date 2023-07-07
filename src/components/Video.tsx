@@ -29,7 +29,9 @@ export function Video() {
 					onEnded={handlePlayNext}
 					// playing
 					controls
-					url={`https://www.youtube.com/watch?v=${currentLesson?.id}`}
+					url={`https://www.youtube.com/watch?v=${
+						currentLesson && currentLesson.id
+					}`}
 				/>
 			)}
 		</div>
